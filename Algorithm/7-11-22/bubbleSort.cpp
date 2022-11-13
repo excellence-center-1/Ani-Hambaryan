@@ -29,11 +29,11 @@ void bubbleSort(int* arr, int n){
 }
 
 int main(){
-int n = 5;
+int n = 10;
 int* arr = new int[n];
 cout << "Input 5 values - ";
 for(int i = 0; i < n; i++){
-cin >> arr[i];
+arr[i] = rand()%100;
 }
 cout << "The array is - ";
 printArr(arr, n);
