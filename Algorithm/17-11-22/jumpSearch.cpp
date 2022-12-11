@@ -38,27 +38,25 @@ void printArr(int* arr, int size){
     }
 }
 
+
 int jumpSearch(int* arr, int size, int number){
-    int step = sqrt( size );
-    int i ;
-    int  hight, low;
-    for( i = 0; i < size; i += step){
-        if(arr[i] == number){
-            break;
-        }else if(arr[i] > number){
-            hight = i;
-            break;
-        }else {
-            hight = size - 1;
-        } 
-    }
-    low  = i - step;
-    if(arr[i] == number){
-        return i;
-    }else{
-        for(int j = low; j <= hight; j++){
-            if(arr[j] == number){
-                return j;
+    int right = sqrt(size);
+    int left = 0;
+    if(arr[left] == number){
+        return left;
+    } else { 
+        while(arr[min(right, size) - 1] < number){
+            left = right;
+            right += sqrt(size);
+            if(left == min(right, size)){
+break;
+}
+        }
+        while(left<=right){
+            left++;
+            if(arr[left] == number){
+                return left;
+                break;
             }
         }
     }
