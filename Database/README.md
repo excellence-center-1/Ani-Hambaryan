@@ -12,3 +12,7 @@
 **Homework 17/03/2023**
 
 1. shop_db.png
+
+**Homework 22/03/2023**
+
+1. store.sql
