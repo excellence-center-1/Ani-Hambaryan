@@ -3,7 +3,7 @@ CREATE DATABASE store;
 
 CREATE TABLE brand (
    id serial PRIMARY KEY,
-   name VARCHAR(50) NOT NULL
+   name VARCHAR(50) CHECK(LENGTH(name)>=4) NOT NULL
 );
 
 
@@ -28,16 +28,16 @@ VALUES (1, 'cake Eskimo', 1500, 1800),
 
 CREATE TABLE provider (
    id SERIAL PRIMARY KEY, 
-   name VARCHAR(50) NOT NULL,
-   address VARCHAR(70) NOT NULL,
-   phone VARCHAR(12) NOT NULL UNIQUE 
+   name VARCHAR(50) CHECK(LENGTH(name)>=4) NOT NULL,
+   address VARCHAR(70) CHECK(LENGTH(address)>=4) NOT NULL,
+   phone VARCHAR(12) NOT NULL  constraint num_1 check (phone ~ '^\d{3} [0-9]{6}$')
 );
 
 
 
 INSERT INTO provider (name, address, phone)
-VALUES ('A LLC', 'A', '+37495111111'), 
-       ('B LLC', 'B', '+37495222222');
+VALUES ('A LLC', 'Aaaa', '094 111111'), 
+       ('B LLC', 'Bbbb', '095 111111');
  
 CREATE TABLE store (
    id serial PRIMARY KEY,
