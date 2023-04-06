@@ -7,12 +7,12 @@ END
 $CODE$
 LANGUAGE plpgsql IMMUTABLE;
 
-CREATE TABLE  pperson
+CREATE TABLE  person
 (
   age int  NOT NULL,
-  year int GENERATED ALWAYS AS (get_year2(age)) STORED
+  year int GENERATED ALWAYS AS (get_year(age)) STORED
 );
 
-insert into pperson2(
+insert into person(
 age)
 values(18);
