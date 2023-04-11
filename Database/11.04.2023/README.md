@@ -20,3 +20,5 @@ https://dbdiagram.io/d/6435bad68615191cfa8d1f8a
 **link for ex 7**
 https://dbdiagram.io/d/6435bc498615191cfa8d1fe8
 
+**link for ex 8, 9, 10**
+https://docs.google.com/spreadsheets/d/1exXrm875fYYOUMKTbV-rGKmEeo0GtqzNMMoXb9RECdE/edit#gid=36466801
