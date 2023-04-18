@@ -1,15 +1,31 @@
 CREATE TABLE my_order(
-    id INT,
+    id serial PRIMARY KEY,
     customer_id INT,
-    order_total FLOAT
+    total_order FLOAT
 );
 CREATE TABLE customer(
-    id INT,
+    id serial PRIMARY KEY,
     name VARCHAR(20),
-    order_total FLOAT
+    total_order FLOAT
 );
 
 ALTER TABLE My_order ADD FOREIGN KEY (customer_id) REFERENCES Customer (id);
-ALTER TABLE Customer ADD FOREIGN KEY (order_total) REFERENCES my_order(order_total);
 
-CREATE TRIGGER trigger1 
+
+-- Create a trigger that updates the "customer" table's "total_orders" column whenever a new order is added.
+
+CREATE OR REPLACE FUNCTION update_customer_total_order()
+RETURNS TRIGGER
+AS $$
+BEGIN
+UPDATE Customer
+SET total_order = total_order+New.total_order
+WHERE id = New.customer_id;
+RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER update_total_order
+AFTER INSERT ON my_order
+FOR EACH ROW EXECUTE FUNCTION update_customer_total_order();
