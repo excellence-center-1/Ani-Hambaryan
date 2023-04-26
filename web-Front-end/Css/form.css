@@ -1,0 +1,123 @@
+html {
+  background-color: #E5E4E2;
+}
+
+.facebook {
+  color: rgba(0, 68, 255, 0.692);
+  font-weight: bolder;
+  font-size: 3.5vw;
+  padding: 25px;
+  text-align: center;
+}
+
+a {
+  color: rgba(0, 68, 255, 0.692);
+  font-weight: bolder;
+  font-size: 1.5vw;
+  text-align: center;
+}
+
+.registration {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid rgb(75, 70, 70);
+  width: 24%;
+  background-color: white;
+  height: 100%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 4px 4PX #A9A9A9;
+  -webkit-box-reflect: belowi;
+}
+
+.account {
+  font-weight: bolder;
+  font-size: 1.5vw;
+  text-align: center;
+}
+
+input[type=text][name="name"] {
+
+  width: 45%;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid slategray;
+}
+
+input[type=email], input[type=password] {
+  width: 92%;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid slategray;
+
+}
+
+.birthday {
+
+  width: 29.5%;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid slategray;
+  background-color: white;
+}
+
+
+
+.radio {
+  width: 25%;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid slategray;
+  padding: 5px;
+  margin-left: 5px;
+  text-align: center;
+}
+
+.form-radio {
+  display: flex;
+
+}
+
+input[type=submit] {
+  width: 65%;
+  height: 35px;
+  border-radius: 7px;
+  background-color: greenyellow;
+  border: greenyellow;
+  margin: 100px 15% 10px;
+  text-align: center;
+  color: white;
+  font-size: 2vh;
+  font-weight: bolder;
+}
+
+div {
+  margin: 10px;
+}
+
+.my-checkbox:checked+.registration {
+  background-color: black;
+  color: white;
+}
+
+.custom-gender {
+  display: none;
+}
+
+input[type="radio"][name="gender"][value="Custom"]:checked~.custom-gender {
+  display: block;
+  position: fixed;
+  top: 63%;
+  left: 40%;
+}
+
+.custom {
+  width: 100%;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid slategray;
+  padding: 2px;
+
+}
