@@ -30,13 +30,16 @@
             <option>October</option>
             <option>November</option>
             <option>December</option>
-            </select> 
-          <input type="number" placeholder="01" size="10">
-          <input type="number" placeholder="2023" size="10"><br><br>
+          </select> 
+          <input type="number" placeholder="01" min = "1" max = "31" size="10">
+          <input type="number" placeholder="2023" min = "1950" size="10"><br><br>
           <label style="text-align: left">Gender</label><br><br>
-          Female <input type="radio" value="Female" name="Female">
-          Male <input type="radio" >
-          Custom <input type="radio" ><br><br><br>
+          <label> Female </label>
+          <input type="radio" value="Female" name="gender">
+          <label> Male </label>
+          <input type="radio" value="Male" name="gender">
+          <label> Custom </label>
+          <input type="radio" value="Custom" name="gender"><br><br><br>
           <input type="submit" value="Sign up" bgcolor="green">
         </form>
       </div>
