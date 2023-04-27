@@ -3,36 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- <meta http-equiv="refresh" content="3" /> -->
+  <meta http-equiv="refresh" content="3" />
   <title>REGISTRATION FORM</title>
-  <link rel="stylesheet" href="../Css/form.css">
+  <link rel="stylesheet" href="../Css/form1.css">
 </head>
 <body>
-  <div class="facebook">
+  <p>
     facebook
-  </div>
-  <input type="checkbox" class="my-checkbox">Check me</input>
+  </p>
+  <input type="checkbox">Check me</input>
   <div class="registration">
-    <div class="account">
+    <h1>
       Create a new account
-      <hr>
-    </div>
+    </h1>
+    <hr>
     <form action="https://www.facebook.com/reg/" target="_blank">
-      <div>
+      <div class="one-line">
         <input type="text" placeholder="First name" name="name">
         <input type="text" placeholder="Last name" name="name">
       </div>
-      <div>
-        <input type="email" placeholder="Mobile number or email" size="57">
-      </div>
-      <div>
-        <input type="password" placeholder="new password" size="57">
-      </div>
-      <div>
-        <label>Birthday</label>
-      </div>
-      <div>
-        <select class="birthday">
+      <input type="email" placeholder="Mobile number or email" >
+      <input type="password" placeholder="new password">
+      <label>Birthday</label>
+      <div class="one-line">
+        <select>
           <option>Janaury</option>
           <option>February</option>
           <option>March</option>
@@ -46,41 +40,34 @@
           <option>November</option>
           <option>December</option>
         </select>
-        <input class="birthday" type="number" placeholder="01" min="1" max="31" size="15">
-        <input class="birthday" type="number" placeholder="2023" min="1950" size="15">
+        <input  type="number" placeholder="01" min="1" max="31">
+        <input  type="number" placeholder="2023" min="1950">
       </div>
-      <div>
-        <label style="text-align: left">Gender</label>
-      </div>
-      <div class="form-radio">
-        <div class="radio">
-          <label> Female </label>
-          <input type="radio" value="Female" name="gender">
-        </div>
-        <div class="radio">
-          <label> Male </label>
-          <input type="radio" value="Male" name="gender">
-        </div>
-        <div class="radio">
-          <label> Custom </label>
-          <input type="radio" value="Custom" name="gender">
-          <div class="custom-gender">
+        <label>Gender</label>
+        <div class="one-line">
+          <div>
+            <label> Female </label>
+            <input type="radio" value="Female" name="gender">
+          </div>
+          <div>
+            <label> Male </label>
+            <input type="radio" value="Male" name="gender">
+          </div>
+          <div>
+            <label> Custom </label>
+            <input type="radio" value="Custom" name="gender">
+             <!-- <div class="custom-gender">
             <select class="custom">
               <option>Select your pronoun</option>
               <option>Wish her a happy birthday</option>
               <option>Wish him a happy birthday</option>
             </select>
-            <div>
-              <small>Your pronoun is visible to everyone.</small>
-            </div>
+            <small>Your pronoun is visible to everyone.</small>
             <input class="custom" type="text" placeholder="gender (optional)">
+          </div>  -->
           </div>
         </div>
-
-      </div>
-      <div>
-        <input type="submit" value="Sign up" bgcolor="green">
-      </div>
+        <input type="submit" value="Sign up">
     </form>
     <a href="https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNjgyNTM3OTIxLCJjYWxsc2l0ZV9pZCI6MjY5NTQ4NDUzMDcyMDk1MX0%3D"
       target="_blank">
