@@ -4,6 +4,11 @@ html {
   background-color: #E5E4E2;
 }
 
+h2,
+a {
+  text-align: center;
+}
+
 input[type="checkbox"]:checked+.registration {
   background-color: black;
   color: white;
@@ -12,80 +17,91 @@ input[type="checkbox"]:checked+.registration {
 p {
   color: rgba(0, 68, 255, 0.692);
   font-weight: bolder;
-  font-size: 3.5vw;
+  font-size: 3.5rem;
   text-align: center;
 }
 
 .registration {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  margin: 0 auto;
-  padding: 20px;
-  width: 400px;
+  margin: auto;
+  padding: 30px;
+  width: 20%;
   border: 1px solid rgb(75, 70, 70);
   background-color: white;
   border-radius: 8px;
   box-shadow: 4px 4PX #A9A9A9;
   -webkit-box-reflect: belowi;
+}
 
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 input,
 select,
-.one-line div {
-  margin: 5px;
-  padding: 7px 9px;
-  border-radius: 5px;
+.gender {
+  background-color: white;
+  padding: 15px 5px 5px 5px;
+  border-radius: 7px;
   border: 1px solid slategray;
+  font-size: 0.8rem;
 }
 
+input[type="text"] {
+  width: 45%;
+  margin: 10px 5px 10px 6px;
+}
+
+select, .gender {
+  width: 33%;
+  margin: 10px 3px 10px 5px;
+}
+
+.one-line {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 input[type=email],
-input[type=password],
-.one-line {
-  width: 96%;
-  display: flex;
-
+input[type=password] {
+  margin: 10px 5px;
 }
 
-input[type=submit] {
+/* .gender {
+  width: 30%;
+  margin: 10px 3px 10px 5px;
+} */
+
+input[type="submit"] {
   background-color: greenyellow;
   border: greenyellow;
   color: white;
-  font-size: 2vh;
+  font-size: 1rem;
   font-weight: bolder;
+  width: 50%;
+  margin: 10px auto;
+  padding: 15pxpx;
+  align-items: center;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(180, 214, 130);
 }
 
 a {
   color: rgba(0, 68, 255, 0.692);
   font-weight: bolder;
-  font-size: 1.2vw;
-  text-align: center;
-
+  font-size: 0.8rem;
 }
 
 a:link {
   text-decoration: none;
 }
 
-
-/* .custom-gender {
-  display: none;
+@media only screen and (max-width: 900px) {
+  .registration {
+    width: 60%;
+  }
 }
-
-input[value="Custom"]:checked~.custom-gender {
-  display: block;
-  position: fixed;
-  top: 63%;
-  left: 40%;
-}
-
-.custom {
-  width: 100%;
-  height: 30px;
-  border-radius: 7px;
-  border: 1px solid slategray;
-  padding: 2px;
-
-}  */

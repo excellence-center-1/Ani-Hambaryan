@@ -1,0 +1,8 @@
+.blue-color {
+  color: blue;
+}
+
+.rounded-div {
+  background-color: blue;
+  border-radius: 20px 0;
+}
