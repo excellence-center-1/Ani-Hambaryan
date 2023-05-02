@@ -6,3 +6,12 @@
   background-color: blue;
   border-radius: 20px 0;
 }
+
+
+@media screen and (min-width: 900px) {
+  .my-media { display: block; }   
+}
+
+@media screen and  (max-width: 900px) {
+  .my-media { display: none; }  
+}
