@@ -14,18 +14,23 @@ input[type="checkbox"]:checked+.registration {
   color: white;
 }
 
-p {
+h1 {
   color: rgba(0, 68, 255, 0.692);
   font-weight: bolder;
   font-size: 3.5rem;
   text-align: center;
+} 
+
+.registration>p {
+    text-align: center;
+    line-height: 0;
+    margin-bottom: 30px;
 }
 
 .registration {
   margin: auto;
-  padding: 30px;
+  padding: 5px 30px 30px;
   width: 20%;
-  border: 1px solid rgb(75, 70, 70);
   background-color: white;
   border-radius: 8px;
   box-shadow: 4px 4PX #A9A9A9;
@@ -100,7 +105,7 @@ a:link {
   text-decoration: none;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 990px) {
   .registration {
     width: 60%;
   }

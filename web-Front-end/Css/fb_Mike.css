@@ -1,0 +1,71 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.bg-color {
+  background-image: linear-gradient(180deg, rgb(55, 55, 100) 1%, white 55%);
+}
+
+.blue-color {
+  color: blue;
+}
+
+.fb-profile-text {
+  width: 96%;
+  margin: auto;
+}
+
+.fb-profile-text>h2,
+.fb-profile-text>a {
+  margin-left: 25%;
+}
+
+.fb-profile-img {
+  width: 10%;
+  display: block;
+  position: absolute;
+  top: 38%;
+  left: 28%;
+  margin: auto;
+  z-index: 1;
+}
+
+@media (min-width: 992px) and (max-width: 1600px) {
+  .fb-profile-img {
+    top: 32%
+  }
+
+  .list-sites {
+    font-size: .8vw;
+  }
+
+  .video-height {
+    height: 250px;
+  }
+}
+
+@media (max-width: 991px) {
+
+  .fb-profile-img {
+    width: 100px;
+    display: block;
+    position: relative;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .fb-profile-text>h2 {
+    font-size: 2vw;
+  }
+
+  .fb-profile-text>h2,
+  .fb-profile-text>a {
+    margin-left: auto;
+  }
+
+  .fb-profile-text {
+    text-align: center;
+  }
+}
