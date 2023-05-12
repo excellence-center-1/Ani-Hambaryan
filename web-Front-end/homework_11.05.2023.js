@@ -37,7 +37,8 @@ console.log(`The book with the shortest title is  '${title_min_length}'`);
 console.log("\n--------\n");
 
 //Task 6: Use a loop to create an array of all the authors in the array of books
-arr.forEach(element => console.log(element.author));
+let arr2=arr.map(element => element.author);
+console.log(arr2)
 
 console.log("\n--------\n");
 
