@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")({ sigint: true });
+//const prompt = require("prompt-sync")({ sigint: true });
 let count = 1;
 let board = []
 const size = parseInt(prompt("Enter the size of the board - 3 or 4: "))
