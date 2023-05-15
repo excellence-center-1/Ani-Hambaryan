@@ -34,18 +34,15 @@ body {
   .fb-profile-img {
     top: 32%
   }
-
   .list-sites {
     font-size: .8vw;
   }
-
   .video-height {
     height: 250px;
   }
 }
 
 @media (max-width: 991px) {
-
   .fb-profile-img {
     width: 100px;
     display: block;
@@ -55,16 +52,13 @@ body {
     right: 0;
     margin: auto;
   }
-
   .fb-profile-text>h2 {
     font-size: 2vw;
   }
-
   .fb-profile-text>h2,
   .fb-profile-text>a {
     margin-left: auto;
   }
-
   .fb-profile-text {
     text-align: center;
   }
