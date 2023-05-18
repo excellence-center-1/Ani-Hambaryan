@@ -17,7 +17,7 @@ const Rectangle = class {
   }
 
   set width(newWidth) {
-    if (newWidth <= 0 || isNaN(newWidth)) {
+    if (newWidth <= 0) {
       console.error("Invalid width value. Width must be a positive number.");
     } else {
       this.#_width = newWidth;
@@ -27,7 +27,7 @@ const Rectangle = class {
     return this.#_height;
   }
   set height(newHeight) {
-    if (newHeight <= 0 || isNaN(newHeight)) {
+    if (newHeight <= 0) {
       console.error("Invalid height value. Height must be a positive number.");
     } else {
       this.#_height = newHeight;
