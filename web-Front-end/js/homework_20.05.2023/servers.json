@@ -1,0 +1,23 @@
+{
+  "servers": [
+    {
+      "server_id": 1,
+      "name": "Server 1",
+      "ip": "192.168.0.1",
+      "status": "active"
+    },
+    {
+      "server_id": 2,
+      "name": "Server 2",
+      "ip": "192.168.0.2",
+      "status": "inactive"
+    },
+    {
+      "server_id": 3,
+      "name": "Server 3",
+      "ip": "192.168.0.3",
+      "status": "active"
+    }
+  ]
+}
+
