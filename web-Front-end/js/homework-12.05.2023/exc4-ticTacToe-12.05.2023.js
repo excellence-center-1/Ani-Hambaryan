@@ -1,86 +1,53 @@
-//const prompt = require("prompt-sync")({ sigint: true });
+// const prompt = require("prompt-sync")({ sigint: true });
+
 let count = 1;
-let board = []
-const size = parseInt(prompt("Enter the size of the board - 3 or 4: "))
-const BOARD_SIZE = 4;
-let print_board;
+const board_size = parseInt(prompt("Enter the board_size of the board : "));
 
+const defaultValue = "*"; 
 
-if (size === BOARD_SIZE) {
-  board = [
-    [" ", " ", " ", " "],
-    [" ", " ", " ", " "],
-    [" ", " ", " ", " "],
-    [" ", " ", " ", " "]
-  ];
+const board = new Array(board_size).fill([]).map(() => new Array(board_size).fill(defaultValue));
 
-  print_board = () => {
-    console.log(`
-        1       2        3        4
-    ._______.________.________.________.
-    |       |        |        |        |
-  1 |   ${board[0][0]}   |   ${board[0][1]}    |   ${board[0][2]}    |   ${board[0][3]}    |
-    |_______|________|________|________|
-    |       |        |        |        |
-  2 |   ${board[1][0]}   |   ${board[1][1]}    |   ${board[1][2]}    |   ${board[1][3]}    |
-    |_______|________|________|________|
-    |       |        |        |        |
-  3 |   ${board[2][0]}   |   ${board[2][1]}    |   ${board[2][2]}    |   ${board[2][3]}    |
-    |_______|________|________|________|
-    |       |        |        |        |
-  4 |   ${board[3][0]}   |   ${board[3][1]}    |   ${board[3][2]}    |   ${board[3][3]}    |
-    |_______|________|________|________|  `);
+print_board = () => {
+  for (let i = 0; i < board_size; i++) {
+    let row = "";
+    for (let j = 0; j < board_size; j++) {
+      row += board[i][j] + " ";
+    }
+    console.log(row);
   }
-} else {
-  board = [
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "],
-  ];
-  print_board = () => {
-    console.log(`
-          1       2        3
-    ._______.________.________.
-    |       |        |        |
-  1 |   ${board[0][0]}   |   ${board[0][1]}    |   ${board[0][2]}    |
-    |_______|________|________|
-    |       |        |        |
-  2 |   ${board[1][0]}   |   ${board[1][1]}    |   ${board[1][2]}    |
-    |_______|________|________|
-    |       |        |        |
-  3 |   ${board[2][0]}   |   ${board[2][1]}    |   ${board[2][2]}    |
-    |_______|________|________|`);
-  };
 };
 
-
-const choose_player = (count) => count % 2 === 0 ? "O" : "X";
+const choose_player = (count) => (count % 2 === 0 ? "O" : "X");
 
 let input_value = (player) => {
-  console.log(`${player}\'s tourn.`);
-  const choice_row = parseInt(prompt(`Choose a row from 1-${size}  - `)) - 1;
-  const choice_col = parseInt(prompt(`Choose a column from 1-${size}  - `)) - 1;
-  const isCorrectRowSize = isNaN(choice_row) || choice_row < 0 || choice_row > size - 1;
-  const isCorrectColSize = isNaN(choice_col) || choice_col < 0 || choice_col > size - 1;
-  if (isCorrectRowSize || isCorrectColSize) {
-    console.log(`Invalid input! Choose a correct position from 1-${size}`);
+  console.log(`${player}'s turn.`);
+  const choice_row = parseInt(prompt(`Choose a row from 1-${board_size}  - `)) - 1;
+  const choice_col = parseInt(prompt(`Choose a column from 1-${board_size}  - `)) - 1;
+  const isCorrectRowboard_size = isNaN(choice_row) || choice_row < 0 || choice_row > board_size - 1;
+  const isCorrectColboard_size = isNaN(choice_col) || choice_col < 0 || choice_col > board_size - 1;
+  if (isCorrectRowboard_size || isCorrectColboard_size) {
+    console.log(`Invalid input! Choose a correct position from 1-${board_size}`);
     input_value(player);
-  } else if (board[choice_row][choice_col] !== " ") {
+  } else if (board[choice_row][choice_col] !== "*") {
     console.log("Invalid input! Position already taken.");
     input_value(player);
   } else {
     board[choice_row][choice_col] = player;
     print_board();
+    if (isWinner(player, board)) {
+      console.log(`Congratulations! ${player}'s has won`);
+      return;
+    }
   }
 };
 
 const isWinner = (symbol, board) => {
   let diag1HasWon = true;
   let diag2HasWon = true;
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < board_size; i++) {
     let rowHasWon = true;
     let colHasWon = true;
-    for (let j = 0; j < size; j++) {
+    for (let j = 0; j < board_size; j++) {
       if (board[i][j] !== symbol) {
         rowHasWon = false;
       }
@@ -90,7 +57,7 @@ const isWinner = (symbol, board) => {
       if (i === j && board[i][j] !== symbol) {
         diag1HasWon = false;
       }
-      if (i + j === size - 1 && board[i][j] !== symbol) {
+      if (i + j === board_size - 1 && board[i][j] !== symbol) {
         diag2HasWon = false;
       }
     }
@@ -112,8 +79,9 @@ const game = () => {
     if (isWinner(choose_player(count), board)) {
       console.log(`Congratulations! ${choose_player(count)}\`s has won`);
       break;
-    } else if (count === size ^ 2) {
+    } else if (count === board_size**2) {
       console.log("The game end");
+      console.log(board_size**2);
       break;
     }
     count++;
@@ -121,8 +89,4 @@ const game = () => {
 }
 
 game()
-
-
-
-
 
