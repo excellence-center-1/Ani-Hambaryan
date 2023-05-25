@@ -9,16 +9,16 @@ const printBoard = () => {
   boardElement.innerHTML = "";
   for (let i = 0; i < boardSize; i++) {
     for (let j = 0; j < boardSize; j++) {
-      const cell = document.createElement("button");
-      cell.className = "cell";
-      cell.textContent = board[i][j];
-      cell.addEventListener("click", () => {
-        if (cell.textContent === defaultValue) {
-          cell.textContent = choose_player(count);
+      const button_cell = document.createElement("button");
+      button_cell.className = "cell";
+      button_cell.textContent = board[i][j];
+      button_cell.addEventListener("click", () => {
+        if (button_cell.textContent === defaultValue) {
+          button_cell.textContent = choose_player(count);
         }
-        updateBoard(i, j, cell.textContent);
+        updateBoard(i, j, button_cell.textContent);
       });
-      boardElement.appendChild(cell);
+      boardElement.appendChild(button_cell);
     }
     boardElement.appendChild(document.createElement("br"));
   }
