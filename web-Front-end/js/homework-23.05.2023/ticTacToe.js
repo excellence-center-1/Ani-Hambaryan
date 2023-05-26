@@ -16,9 +16,9 @@ const printBoard = () => {
         if (cell.textContent === '') {
           cell.textContent = choose_player(count);
         }
-        updateBoard(i, j, cell.textContent);
+        updateBoard(i, j, button_cell.textContent);
       });
-      boardElement.appendChild(cell);
+      boardElement.appendChild(button_cell);
     }
     boardElement.appendChild(document.createElement("br"));
   }
