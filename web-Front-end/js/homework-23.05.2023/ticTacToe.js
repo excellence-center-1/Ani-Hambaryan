@@ -1,7 +1,7 @@
 let count = 1;
 let boardSize;
 let board;
-const defaultValue = " ";
+const defaultValue = "?";
 const choose_player = (count) => (count % 2 === 0 ? "O" : "X");
 
 const printBoard = () => {
