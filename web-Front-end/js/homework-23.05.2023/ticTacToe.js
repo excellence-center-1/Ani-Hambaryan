@@ -1,7 +1,6 @@
 let count = 1;
-let boardSize;
+let boardSize = 0;
 let board;
-const defaultValue = " ";
 const choose_player = (count) => (count % 2 === 0 ? "O" : "X");
 
 const printBoard = () => {
@@ -12,8 +11,9 @@ const printBoard = () => {
       const cell = document.createElement("button");
       cell.className = "cell";
       cell.textContent = board[i][j];
+      cell.draggable = false;
       cell.addEventListener("click", () => {
-        if (cell.textContent === defaultValue) {
+        if (cell.textContent === '') {
           cell.textContent = choose_player(count);
         }
         updateBoard(i, j, cell.textContent);
@@ -26,7 +26,7 @@ const printBoard = () => {
 
 const game = () => {
   boardSize = parseInt(document.getElementById('sizeb').value);
-  board = new Array(boardSize).fill(null).map(() => new Array(boardSize).fill(defaultValue));
+board = new Array(boardSize).fill().map(() => new Array(boardSize).fill());
   printBoard();
 };
 

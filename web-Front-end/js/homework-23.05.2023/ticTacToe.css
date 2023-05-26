@@ -1,23 +1,9 @@
 .cell {
-    display: inline-block;
-    width: 50px;
+    width: 5%;
     height: 50px;
     border: 1px solid black;
     text-align: center;
     background-color: green;
     color: white;
-    padding: 5px;
-}
-
-.container {
-    padding: 20px; 
-    width: 30%;
-    margin: auto;
-    box-sizing: border-box; 
-
-} 
-.container * {
-    padding: 10px;
-    box-sizing: border-box;
-
+    padding: 16px 16px 14px;
 }
