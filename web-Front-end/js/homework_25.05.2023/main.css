@@ -1,13 +1,98 @@
 .cell {
-    width: 5%;
-    height: 50px;
-    border: 1px solid black;
-    text-align: center;
-    background-color: rgb(74, 192, 207);
-    color: white;
-    font-size: 1vw;
-    display: inline-block;
-    padding: 7px 0 9px;
-    margin: 0;
-    line-height: 50px;
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+	text-align: center;
+	background-color: rgb(221, 244, 248);
+	color: white;
+	font-size: 1vw;
+	padding: 7px 0 9px;
+	margin: 0;
 }
+
+.marker_cell {
+	height: 50px;
+	text-align: center;
+}
+
+#marker_row,
+#marker_row1 {
+	width: 50px;
+	margin-left: 50%;
+}
+
+#marker_col,
+#marker_col1 {
+	height: 50px;
+	width: 50px;
+	margin: 6px auto auto 20%;
+}
+
+.ship {
+	width: 50px;
+	height: 50px;
+	background-color: gray;
+	margin-bottom: 10px;
+}
+
+
+
+.ship-display {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+
+}
+
+.ship-container,
+.ship-markers {
+	display: flex;
+	align-items: center;
+}
+
+.ship-cell {
+	width: 20px;
+	height: 20px;
+	background-color: gray;
+	margin-right: 5px;
+}
+
+.ship-type {
+	margin-right: 10px;
+}
+
+.ship1-cell {
+	background-color: navy;
+}
+
+.ship2-cell {
+	background-color: rgb(247, 61, 234);
+}
+
+.ship3-cell {
+	background-color: rgb(230, 31, 17);
+}
+
+
+.ship1-cell,
+.ship2-cell,
+.ship3-cell {
+	width: 50px;
+	height: 50px;
+	padding: 7px 0 9px;
+	margin: 0;
+}
+
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .won, .game-over {
+    animation: fadeOut 6s ease forwards;
+  }
+  

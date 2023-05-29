@@ -9,19 +9,39 @@
 </head>
 
 <body>
-  <div class="container-fluid  .bg-light">
+  <div class="container-fluid ">
     <div class="row" size="50">
-      <div class="col-sm-12 col-md-6 text-center">
-        <p class="font-weight-bold font-italic .text-info fs-3">MYBOARD</p>
-        <div id="my_board"></div>
+      <div class="col-sm-12 col-md-6 text-center  bg-info-subtle">
+        <p class="font-weight-bold font-italic text-info fs-2">MYBOARD</p>
+        <div class="row-cols-1  d-flex  justify-content-center fs-4" id="marker_row"></div>
+        <div class="row-cols-1 d-flex justify-content-center">
+          <div class="col-md-3 fs-4" id="marker_col"></div>
+          <div class="col-md-9  m-auto" id="my_board"></div>
+        </div>
+        <p class="font-weight-bold font-italic text-info fs-4 mt-4">Type and count ships</p>
+        <div class="d-flex m-5 p-5 mt-2">
+          <div id="ship-display" class="ship-display"></div>
+          <select id="select_orientation">
+            <option disabled selected>Select Orientation</option>
+          </select>
+
+        </div>
+        <button id="add_ships">addShipsRandom</button>
+
       </div>
-      <div class="col-sm-12 col-md-6 text-center border-start border-2 border-black">
-        <p class="font-weight-bold font-italic .text-info fs-3">PLAYER'S BOARD</p>
-        <div id="players_board"></div>
+      <div class="col-sm-12 col-md-6 text-center border-start border-2 border-black bg-info-subtle">
+        <p class="font-weight-bold font-italic text-info fs-2">PLAYER'S BOARD</p>
+        <div class="row-cols-1  d-flex  justify-content-center fs-4" id="marker_row1"></div>
+        <div class="row-cols-1 d-flex justify-content-center">
+          <div class="col-md-3 fs-4" id="marker_col1"></div>
+          <div class="col-md-9  m-auto" id="players_board"></div>
+        </div>
+        <h1 id="game_over"></h1>
       </div>
     </div>
+
   </div>
-  <script src="seaBattle.js"></script>
+  <script src="seaBattle1.js"></script>
 </body>
 
 </html>

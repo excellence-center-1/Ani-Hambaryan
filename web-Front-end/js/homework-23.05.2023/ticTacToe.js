@@ -15,6 +15,8 @@ const printBoard = () => {
     for (let j = 0; j < boardSize; j++) {
       const cell = document.createElement("button");
       cell.className = "cell";
+
+      
       cell.textContent = board[i][j];
       cell.addEventListener("click", () => {
         if (cell.textContent === '') {
