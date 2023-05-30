@@ -2,7 +2,7 @@ class Board {
 	constructor() {
 		this.boardSize = 10;
 		this.board = new Array(this.boardSize).fill().map(() => new Array(this.boardSize).fill());
-		this.selectedShip = null;
+		//this.selectedShip = null;
 		// this.selectedOrientation = null;
 	}
 
