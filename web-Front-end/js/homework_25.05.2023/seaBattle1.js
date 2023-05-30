@@ -225,7 +225,7 @@ const playGame = () => {
 					count++;
 					if (count === 20) {
 						won.textContent = 'You won';
-                        won.className = 'won game-over';
+                        			won.className = 'won game-over';
 						return;
 					}
 				} else {
