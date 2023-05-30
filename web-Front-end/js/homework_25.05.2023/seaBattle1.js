@@ -1,4 +1,4 @@
-class Board {
+class Board { 
 	constructor() {
 		this.boardSize = 10;
 		this.board = new Array(this.boardSize).fill().map(() => new Array(this.boardSize).fill());
