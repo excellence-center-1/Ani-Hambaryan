@@ -75,18 +75,17 @@ class Board {
 
   addShip = () => {
     const cells = document.getElementsByClassName('cell');
-    const self = this; 
-  
+    
     for (let i = 0; i < cells.length; i++) {
       cells[i].addEventListener('click', function() { 
-        const row = Math.floor(i / self.boardSize);
-        const col = i % self.boardSize;
+        const row = Math.floor(i / this.boardSize);
+        const col = i % this.boardSize;
         console.log('aaaaa')
   
-        if (self.selectedShip && self.selectedOrientation) {
-          self.createShip(row, col);
+        if (this.selectedShip && this.selectedOrientation) {
+          this.createShip(row, col);
           console.log('ccc')
-          self.printBoard('my_board'); 
+          this.printBoard('my_board'); 
         }
       });
     }
