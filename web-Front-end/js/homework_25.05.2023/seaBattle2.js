@@ -30,10 +30,9 @@ class Board {
       for (let j = 0; j < this.boardSize; j++) {
         const cell = document.createElement("td");
         cell.className = "cell";
-         // Check if the cell contains a ship
          if (this.board[i][j] === "V") {
             console.log('V')
-            cell.className = "ship1-cell"; // Add ship cell class
+            cell.className = "ship1-cell"; 
           }
     
         row.appendChild(cell);
