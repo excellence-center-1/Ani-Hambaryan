@@ -10,7 +10,7 @@ class Board {
   printMarker(markerName) {
     const marker = document.getElementById(markerName);
     marker.innerHTML = '';
-    for (let i = 1; i <= this.boardSize; i++) {
+    for (let i = 0; i < this.boardSize; i++) {
       const cell = document.createElement('div');
       cell.className = 'marker_cell';
       cell.innerHTML = i;
@@ -140,6 +140,7 @@ const addShipsRandom = () => {
 
 }
 
+
 const canPlaceShip = (row, col, size, orientation) => {
   if (orientation === 'vertical') {
     if (row + size > myBoard.boardSize) {
@@ -182,6 +183,37 @@ const canPlaceShip = (row, col, size, orientation) => {
 
   return true;
 }
+// const canPlaceShip = (row, col, size, orientation) => {
+//   if (orientation === 'vertical') {
+//     if (row + size > myBoard.boardSize || col + 1 >= myBoard.boardSize) {
+//       return false;
+//     }
+//     for (let i = row; i < row + size; i++) {
+//       for (let j = col; j <= col + 1; j++) {
+//         if (i - 1 < 0 || j < 0 || j >= myBoard.boardSize || myBoard.board[i - 1][j] || myBoard.board[i][j] || myBoard.board[i][j + 1]) {
+//           return false;
+//         }
+//       }
+//     }
+//   } else if (orientation === 'horizontal') {
+//     if (col + size > myBoard.boardSize || row + 1 >= myBoard.boardSize) {
+//       return false;
+//     }
+//     for (let i = row; i <= row + 1; i++) {
+//       for (let j = col; j < col + size; j++) {
+//         if (i < 0 || i >= myBoard.boardSize || j - 1 < 0 || myBoard.board[i][j - 1] || myBoard.board[i][j] || myBoard.board[i + 1][j]) {
+//           return false;
+//         }
+//       }
+//     }
+//   }
+
+//   return true;
+// };
+
+  
+  
+
 const addShipsRandomButton = document.getElementById('add_ships');
 addShipsRandomButton.addEventListener('click', addShipsRandom);
 
