@@ -1,15 +1,17 @@
-import logo from './logo.svg';
+
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
-import Header from './header';
-import RegistrationForm from './Registration';
+
+import RegistrationForm from './myJs/Registration';
+// import SignIn from './signIn';
 
 
 function App() {
   return (
     <div className="App">
-      <Header />
+     
       <RegistrationForm />
+      {/* <SignIn/> */}
     </div>
   )
 }
