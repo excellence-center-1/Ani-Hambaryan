@@ -33,6 +33,7 @@ app.get('/users/:id', (req, res) => {
     user ? res.json(user) : res.sendStatus(404).send('User not found')
   });
 });
+
 app.post('/add', (req, res) => {
   const newUser = {
 
@@ -83,36 +84,46 @@ app.delete('/users/:id', (req, res) => {
   })
 });
 
+const middlePut = (req, res, next) => {
+    console.log(`PUT request received for path: ${req.path}`)
+    console.log('bodi', req.body);
+    next();
+  }
 
-app.put('/users/:id', (req, res) => {
-  const userId = req.params.id;
-  const updatedUserData = req.body;
-
-  fs.readFile('users.json', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    const users = JSON.parse(data);
-    const userIndex = users.findIndex(user => user.id === userId);
-    if (userIndex === -1) {
-      res.status(404).send('User not found');
-      return;
-    }
-    users[userIndex] = {
-      ...users[userIndex],
-      ...updatedUserData
-    };
-    fs.writeFile('users.json', JSON.stringify(users, null, 2), err => {
+  
+app.put('/users/:id', middlePut, (req, res) => {
+    const userId = req.params.id;
+    const updatedUserData = req.body;
+  
+    fs.readFile('users.json', (err, data) => {
       if (err) {
         console.error(err);
         return;
       }
-      res.json(users[userIndex]);
+      const users = JSON.parse(data);
+      const userIndex = users.findIndex((user) => user.id === userId);
+      if (userIndex === -1) {
+        res.status(404).send('User not found');
+        return;
+      }
+      users[userIndex] = {
+        ...users[userIndex],
+        ...updatedUserData,
+      };
+      fs.writeFile('users.json', JSON.stringify(users, null, 2), (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        res.json(users[userIndex]);
+      });
     });
   });
-});
 
-app.listen(port, () => {
-  console.log(`API server listening on port ${port}`);
-});
+
+
+
+  app.listen(port, () => {
+    console.log(`API server listening on port ${port}`);
+  });
+  
