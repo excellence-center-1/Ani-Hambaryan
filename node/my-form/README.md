@@ -17,9 +17,13 @@ CREATE TABLE users (
 SELECT * from users;
 
 **run client**
+
 cd Ani-Hambaryan/node/my-form/client
+
 npm start
 
 **run server**
+
 cd Ani-Hambaryan/node/my-form/server
+
 node server.js
