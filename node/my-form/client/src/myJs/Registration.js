@@ -51,14 +51,6 @@ export const RegistrationForm = () => {
           gender: selectedRadio,
         },
       })
-        .then((response) => {
-          console.log('User created:', response.data);
-          setSubmitted(true);
-        })
-        .catch((error) => {
-          console.error('Error creating user:', error);
-          setSubmitted(false);
-        });
       navigate('/sign-up');
     }
   };

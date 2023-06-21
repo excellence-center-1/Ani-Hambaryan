@@ -2,7 +2,8 @@
 sudo -u postgres psql
 CREATE USER my_form WITH PASSWORD '123';
 ALTER USER my_form CREATEDB;
-**psql -U my_form -h localhost -d signup**
+\c signup;
+<!-- **psql -U my_form -h localhost -d signup** -->
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -16,6 +17,7 @@ CREATE TABLE users (
 
 SELECT * from users;
 
+
 **run client**
 
 cd Ani-Hambaryan/node/my-form/client
@@ -26,4 +28,4 @@ npm start
 
 cd Ani-Hambaryan/node/my-form/server
 
-node server.js
+npm start
