@@ -12,6 +12,8 @@ const pool = new Pool({
   port: 5432, // Default PostgreSQL port
 });
 
+
+//Schema-հայտարարում է տվյալների տիպերը, դաշտերը, կապերը
 const typeDefs = gql`
   type User {
     first_name: String!
