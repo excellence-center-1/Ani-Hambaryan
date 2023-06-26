@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
+import { useNavigate } from 'react-router-dom';
+// import { addUserScores } from './queries.js';
+// import { user_id } from "./login";
+
 const wordList = [
     {
         word: "python",
@@ -56,7 +60,7 @@ export const GuessWord = () => {
     const [message, setMessage] = useState('');
     const [count, setCount] = useState(0);
     const [currentWord, setCurrentWord] = useState(getRandomWord());
-
+    const navigate = useNavigate();
 
 
 
@@ -80,16 +84,33 @@ export const GuessWord = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const guessWord = guess.join('');
+        // let level_id = 0;
         if (guessWord === currentWord.word) {
             setMessage('You are guess the word')
             setCount((prevCount) => prevCount + 1);
             setGuess('')
             setCurrentWord(getRandomWord());
+
+            //             const score = count+1;
+            //             if(score <=1){
+            //                 level_id=1;
+            //             } else if(score === 5){
+            //                 level_id = 2;
+            //             } else if(score === 8){
+            //                 level_id = 3;
+            //             } 
+            // const user_id = user_id
+            // // await addUserScores(user_id, level_id, score);
         } else {
             setMessage('You arn\'t guess the word')
             setCount((prevCount) => prevCount - 1);
             setGuess('')
         }
+    };
+
+    const handleSubmitEnd = (e) => {
+        e.preventDefault();
+        navigate('/login')
     };
 
     return (
@@ -102,8 +123,9 @@ export const GuessWord = () => {
 
             </div>
             <button className="mt-3 btn btn-info" type="submit" onClick={handleSubmit}>Submit</button>
-            <input value={count} readOnly className="mt-3 btn btn-info ms-2 qount" />
+            <input value={`score: ${count}`} readOnly className="mt-3 btn btn-info ms-2 qount" />
             <h5>{message}</h5>
+            <button className="mt-3 btn btn-info" type="submit" onClick={handleSubmitEnd}>LogOut</button>
         </div>
     );
 }

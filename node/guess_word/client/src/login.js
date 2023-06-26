@@ -17,7 +17,7 @@ export const Login = () => {
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-
+    // const [user_id, setUserId] = useState(0)
 
 
 
@@ -53,12 +53,14 @@ export const Login = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                const token = data.token; //
+                const { token } = data;
+                // const {token, user_id} = data; //
                 // localStorage.setItem('token', token);
                 document.cookie = `token=${token};`; //
 
                 setSuccess(true);
                 setErrMsg('Login Success');
+                // setUserId(user_id)
                 console.log('User logged in:', { username: user });
                 setTimeout(() => {
                     navigate('/game');
@@ -97,3 +99,4 @@ export const Login = () => {
         </div>
     )
 }
+// export const user_id = user_id;
