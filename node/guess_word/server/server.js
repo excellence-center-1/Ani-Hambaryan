@@ -25,10 +25,8 @@ app.post('/users', db.checkUserExist, db.createUser);
 app.post('/login', db.loginUser);
 app.delete('/users/:id', db.deleteUser);
 
-const { AddDataToLevelsTable } = require('./AddDataToLevelsTable');
-AddDataToLevelsTable();
-
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);
 });
 
+require('./AddDataToLevelsTable');
