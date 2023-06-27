@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import { useNavigate } from 'react-router-dom';
-// import { addUserScores } from './queries.js';
-// import { user_id } from "./login";
+import { Link, useNavigate } from 'react-router-dom';
 
 const wordList = [
     {
@@ -84,23 +82,11 @@ export const GuessWord = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const guessWord = guess.join('');
-        // let level_id = 0;
         if (guessWord === currentWord.word) {
             setMessage('You are guess the word')
             setCount((prevCount) => prevCount + 1);
             setGuess('')
             setCurrentWord(getRandomWord());
-
-            //             const score = count+1;
-            //             if(score <=1){
-            //                 level_id=1;
-            //             } else if(score === 5){
-            //                 level_id = 2;
-            //             } else if(score === 8){
-            //                 level_id = 3;
-            //             } 
-            // const user_id = user_id
-            // // await addUserScores(user_id, level_id, score);
         } else {
             setMessage('You arn\'t guess the word')
             setCount((prevCount) => prevCount - 1);
