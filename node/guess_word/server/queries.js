@@ -59,19 +59,31 @@ const checkUserExist = async (request, response, next) => {
 
 const createUser = async (request, response) => {
     const { name, password } = request.body;
+    const saltRounds = 10;
 
+    bcrypt.hash(password, saltRounds, async (err, hash) => {
+        if (err) {
+            throw err;
+        }
 
-    try {
-        const result = await pool.query(
-            'INSERT INTO users (name, password) VALUES ($1, $2) RETURNING *',
-            [name, password]
-        );
-        response.status(201).send(`User added with ID: ${result.rows[0].id}`);
-    } catch (error) {
-        throw error;
-    }
+        try {
+            const result = await pool.query(
+                'INSERT INTO users (name, password) VALUES ($1, $2) RETURNING *',
+                [name, hash]
+            );
+            response.status(201).send(`User added with ID: ${result.rows[0].id}`);
+        } catch (error) {
+            throw error;
+        }
+    });
 };
 
+const addLevel = (levelName, score) => {
+    const result = pool.query(
+        'INSERT INTO levels (level_name, score) VALUES ($1, $2) RETURNING *',
+        [levelName, score]
+    );
+};
 
 
 const loginUser = async (request, response) => {
@@ -83,14 +95,21 @@ const loginUser = async (request, response) => {
             return response.status(401).send('Invalid username or password');
         }
 
-        const isPasswordMatch = await bcrypt.compare(password, user.password);
-        if (isPasswordMatch) {
-            const token = jwt.sign({ id: user.id }, 'secretKey');
-            response.cookie('token', token, { httpOnly: true });
-            return response.status(200).json({ token, user_id: user.id });
-        } else {
-            return response.status(401).send('Invalid username or password');
-        }
+        bcrypt.compare(password, user.password, (err, result) => {
+            if (err) {
+                throw err;
+            }
+
+            if (result) {
+                // 
+                const token = jwt.sign({ id: user.id }, 'secretKey'); 
+                response.cookie('token', token, { httpOnly: true });
+                return response.status(200).json({ token });
+            } else {
+                // 
+                return response.status(401).send('Invalid username or password');
+            }
+        });
     } catch (error) {
         response.status(500).send('Internal Server Error');
     }
@@ -108,31 +127,6 @@ const deleteUser = (request, response) => {
     });
 };
 
-const addLevel = (levelName, score) => {
-    const result = pool.query(
-        'INSERT INTO levels (level_name, score) VALUES ($1, $2) RETURNING *',
-        [levelName, score]
-    );
-};
-
-const getLevels = async () => {
-    try {
-        const result = await pool.query('SELECT * FROM levels ORDER BY id ASC');
-        return result;
-    } catch (error) {
-        throw error
-    }
-};
-
-const addUserScores = (user_id, level_id, score) => {
-    const result = pool.query(
-        'INSERT INTO users_levels (user_id, level_id, score) VALUES ($1, $2, $3) RETURNING *',
-        [user_id, level_id, score]
-    );
-    return result.rows[0];
-
-};
-
 module.exports = {
     getUsers,
     getUserById,
@@ -140,10 +134,7 @@ module.exports = {
     createUser,
     deleteUser,
     loginUser,
-    addLevel,
-    getLevels,
-    addUserScores,
-    getUserByName
+    addLevel
 };
 
 
