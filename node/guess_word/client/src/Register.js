@@ -1,4 +1,77 @@
+import { useState, useEffect, useRef } from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+import { Link, useNavigate } from 'react-router-dom';
+import bcrypt from 'bcryptjs';
 
+
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
+const USER_REGEX = /^[A-Z][a-zA-Z0-9_-]{2,15}$/;
+
+
+export const Register = () => {
+
+    const errRef = useRef();
+
+    const [user, setUser] = useState('');
+    const [validName, setValidName] = useState(false);
+    const [pwd, setPwd] = useState('');
+    const [validPwd, setValidPwd] = useState(false);
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+
+
+    useEffect(() => {
+        const result = USER_REGEX.test(user);
+        setValidName(result);
+    }, [user])
+
+    useEffect(() => {
+        const result = PWD_REGEX.test(pwd);
+        setValidPwd(result);
+    }, [pwd])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [user, pwd])
+
+
+    const handleInputChange = (e, fieldName) => {
+        const value = e.target.value;
+        if (fieldName === 'user') {
+            setUser(value)
+        } else if (fieldName === "password") {
+            setPwd(value)
+        }
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const validUs = USER_REGEX.test(user);
+        const validPass = PWD_REGEX.test(pwd);
+        if (!validUs || !validPass) {
+            setErrMsg('Invalid Name or password');
+            return;
+        }
+        try {
+      const salt = bcrypt.genSaltSync(10);
+           const hash = bcrypt.hashSync(pwd, salt);
+            const response = await fetch('http://localhost:3001/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: user, password: hash }),
+            });
+
+            if (response.status === 409) {
+                setErrMsg('Username already exists');
+            } else if (response.ok) {
+                setSuccess(true);
+                setErrMsg('Registration Success');
+                console.log('User added:', JSON.stringify({ name: user, password: hash }));
+            } else {
+                setSuccess(false);
+                setErrMsg('Registration Failed');
+            }
         } catch (err) {
             setSuccess(false);
             setErrMsg('Registration Failed');
