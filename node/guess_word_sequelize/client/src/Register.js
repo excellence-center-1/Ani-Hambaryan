@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import bcrypt from 'bcryptjs'
 
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
@@ -51,20 +52,21 @@ export const Register = () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:3001/users', {
+            const hash = bcrypt.hashSync(pwd, 10)
+            const response = await fetch('http://localhost:4000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name: user, password: pwd }),
+                body: JSON.stringify({ name: user, password: hash }),
             });
 
-            if (response.status === 409) {
+            if (response.status === 400) {
                 setErrMsg('Username already exists');
             } else if (response.ok) {
                 setSuccess(true);
                 setErrMsg('Registration Success');
-                console.log('User added:', JSON.stringify({ name: user, password: pwd }));
+                console.log('User added:', JSON.stringify({ name: user, password: hash }));
             } else {
                 setSuccess(false);
                 setErrMsg('Registration Failed');

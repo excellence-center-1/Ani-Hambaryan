@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link, useNavigate } from 'react-router-dom';
-
+import bcrypt from 'bcryptjs'
 
 
 export const Login = () => {
@@ -44,12 +44,13 @@ export const Login = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/login', {
+            // const hash = bcrypt.hashSync(pwd, 10)
+            const response = await fetch('http://localhost:4000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username: user, password: pwd }),
+                body: JSON.stringify({ username: user, password: pwd}),
             });
             const data = await response.json();
             if (response.ok) {
@@ -81,11 +82,11 @@ export const Login = () => {
             <form className="d-flex flex-column p-5 mt-5">
                 <div className="mb-3">
                     <label className="form-label">User Name</label>
-                    <input type="text" value={user} onChange={(e) => handleInputChange(e, 'user')} className="form-control" />
+                    <input type="text" name = 'user' value={user} onChange={(e) => handleInputChange(e, 'user')} className="form-control" />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input type="password" value={pwd} onChange={(e) => handleInputChange(e, 'password')} className="form-control" />
+                    <input type="password" name = "password"value={pwd} onChange={(e) => handleInputChange(e, 'password')} className="form-control" />
 
                 </div>
                 <div className="mb-3">
