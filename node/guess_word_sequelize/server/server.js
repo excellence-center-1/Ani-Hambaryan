@@ -12,6 +12,7 @@ const port = 4000;
 
 const Sequelize = require('sequelize');
 
+  
 const { User, Question } = require('./models');
 app.use(cors({
     origin: 'http://localhost:3000'

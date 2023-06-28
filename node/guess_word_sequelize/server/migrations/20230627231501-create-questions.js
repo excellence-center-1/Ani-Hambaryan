@@ -13,6 +13,9 @@ module.exports = {
       },
       question: {
         type: Sequelize.STRING
+      },
+      level: {
+        type: Sequelize.STRING
       }
     });
   },

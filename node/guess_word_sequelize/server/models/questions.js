@@ -3,18 +3,22 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     const Question = sequelize.define(
-      'questions',
+      'Question',
       {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
           },
+          word: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
           question: {
             type: DataTypes.STRING,
             allowNull: false,
           },
-          word: {
+          level: {
             type: DataTypes.STRING,
             allowNull: false,
           },

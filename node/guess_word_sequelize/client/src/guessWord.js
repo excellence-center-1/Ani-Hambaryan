@@ -9,27 +9,33 @@ export const GuessWord = () => {
     const [guess, setGuess] = useState('');
     const [message, setMessage] = useState('');
     const [count, setCount] = useState(0);
-    const [currentWord, setCurrentWord] = useState({});
+    const [currentWord, setCurrentWord] = useState('');
+    const [currentquestion, setCurrentQuestion] = useState('')
     const navigate = useNavigate();
-    useEffect(() => {
-        const fetchRandomWord = async () => {
-            try {
-                const response = await fetch('/random-word');
-                if (response.ok) {
-                    const data = await response.json();
-                    setCurrentWord(data);
-                } else {
-                    console.error('Error retrieving random word', response.status);
-                }
-            } catch (error) {
-                console.error('Error retrieving random word', error);
-            }
-        };
-        fetchRandomWord();
-    }, []);
 
-   
-      
+
+    const fetchRandomWord = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/random-word', {
+                method: 'GET',
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setCurrentWord(data.question.word);
+                setCurrentQuestion(data.question.question)
+            } else {
+                console.error('Error retrieving random word', response.status);
+            }
+        } catch (error) {
+            console.error('Error retrieving random word', error);
+        }
+    };
+
+
+    useEffect(() => {
+        fetchRandomWord();
+      }, []);
+
     const handleInput = (e) => {
         const index = parseInt(e.target.name); //տալիս է զանգվածի սիմվոլին արժեք
         const character = e.target.value;
@@ -42,24 +48,26 @@ export const GuessWord = () => {
     };
 
 
-    for (let i = 0; i < currentWord.length; i++) {
+    for (let i = 0; i < currentWord?.length; i++) {
         inputs.push(<input key={i} name={i.toString()} type="text" value={guess[i] || ''} onChange={(e) => handleInput(e)} className='input-field me-2 rounded-2 bg-info bg-opacity-10 border border-info inp' />);
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const guessWord = guess.join('');
-        if (guessWord === currentWord.word) {
+        if (guessWord === currentWord) {
             setMessage('You are guess the word')
             setCount((prevCount) => prevCount + 1);
-            setGuess('')
-           
+            // setGuess('')
+
         } else {
             setMessage('You arn\'t guess the word')
-            setCount((prevCount) => prevCount - 1);
-            setGuess('')
+            setCount((count > 0) ? (prevCount) => prevCount - 1 : count);
+            // setGuess('')
         }
+        setGuess('');
+    await fetchRandomWord(); 
     };
 
     const handleSubmitEnd = (e) => {
@@ -70,7 +78,7 @@ export const GuessWord = () => {
     return (
         <div className="container mt-5">
             <h1 className='mt-5 p-5'>================= word guessing game =================</h1>
-            <h4>{currentWord.hint}</h4>
+            <h4>{currentquestion}</h4>
             <div className='d-flex justify-content-center container mt-5'>
 
                 {inputs}
