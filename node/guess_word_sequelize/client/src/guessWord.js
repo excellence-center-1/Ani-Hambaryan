@@ -30,6 +30,8 @@ useEffect(() => {
     
         fetchUserData();
       }, []);
+
+      
     const fetchRandomWord = async () => {
         try {
             const response = await fetch('http://localhost:4000/random-word', {
@@ -114,11 +116,11 @@ useEffect(() => {
             <h5>{message}</h5>
             <button className="mt-3 btn btn-info" type="submit" onClick={handleSubmitEnd}>LogOut</button>
             </div>
-            <h4 className="mt-5 mb-5 ">Subscription</h4>
-            <input type="radio" class="btn-check" id="btncheck1" autocomplete="off" name="choose"/>
-  <label className="btn btn-outline-info" for="btncheck1">Open one letter</label>
-            <input type="radio" class="btn-check" id="btncheck2" autocomplete="off" name="choose"/>
-  <label className="btn btn-outline-info" for="btncheck2">Open two letter</label>
+            <h4 className="mt-5 mb-2 ">Subscription</h4>
+            <input type="radio" className="btn-check m-2" id="btncheck1" autocomplete="off" name="choose"/>
+  <label className="btn btn-outline-info m-2" for="btncheck1">Open one letter</label>
+            <input type="radio" className="btn-check m-2" id="btncheck2" autocomplete="off" name="choose"/>
+  <label className="btn btn-outline-info m-2" for="btncheck2">Open two letter</label>
         </div>
     );
 }

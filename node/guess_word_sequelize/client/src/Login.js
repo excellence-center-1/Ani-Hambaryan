@@ -112,10 +112,10 @@ console.error('Error creating user_level', error);
                 </div>
                 <div className="mb-3">
                     {/* <Link to = "/game" onClick={handleSubmit} className="btn btn-primary">Login</Link> */}
-                    <button type="submit" onClick={handleSubmit} className="btn btn-primary">Login</button>
+                    <button type="submit" onClick={handleSubmit} className="btn btn-secondary">Login</button>
                 </div>
             </form>
-            <Link to="/">Signup</Link>
+            <Link to="/" className="text-secondary">Signup</Link>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -14,9 +15,18 @@ module.exports = {
       question: {
         type: Sequelize.STRING
       },
-      level: {
-        type: Sequelize.STRING
-      }
+     
+      level_id: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: 'levels',
+            key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      
+    
     });
   },
   async down(queryInterface, Sequelize) {

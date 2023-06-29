@@ -75,12 +75,30 @@ app.post('/login', async (req, res) => {
         }
         res.status(401).json({ message: 'Invalid username or password' });
     } catch (error) {
-        console.error('Error during login', error);
         res.status(500).json({ message: 'Server error' });
     }
 });
 
 
+
+// const filterByLevel = async (req, res, next) => {
+//     try {
+//         const { levelId } = req.body;
+//         const levelName = await Level.findOne({ where: { id: levelId } });
+//         if (levelName) {
+//       const question = await Question.findOne({
+//         where: { level_id: levelId },
+//         order: Sequelize.literal('random()')
+//       });
+//      }
+//       req.question = question;
+//       next(); 
+//     } catch (error) {
+
+//       res.status(500).json({ message: 'Server error' });
+//     }
+//   };
+  
 
 app.get('/questions', async (req, res) => {
     try {
@@ -96,9 +114,7 @@ app.get('/questions', async (req, res) => {
 
 const filterByLevel = async (req, res, next) => {
     try {
-      const { level } = req.body; 
-  
-      
+      const { level } = req.body;      
       const question = await Question.findOne({
         where: level,
         order: Sequelize.literal('random()')

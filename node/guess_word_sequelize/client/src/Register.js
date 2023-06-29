@@ -84,10 +84,10 @@ export const Register = () => {
             <form className="d-flex flex-column p-5 mt-5">
                 <div className="mb-3">
                     <label className="form-label">User Name</label>
-                    <input 
-                        type="text" 
-                        value={user} 
-                        onChange={(e) => handleInputChange(e, 'user')} 
+                    <input
+                        type="text"
+                        value={user}
+                        onChange={(e) => handleInputChange(e, 'user')}
                         className="form-control" />
                     {!validName && user.length > 0 && (
                         <small id="nameHelp" className="form-text text-danger">
@@ -111,15 +111,40 @@ export const Register = () => {
 
                 </div>
                 <div className="mb-3">
-
-                    <button 
-                        type="submit" 
-                        onClick={handleSubmit} 
-                        className="btn btn-primary">Register</button>
+                    <button
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="btn btn-secondary">
+                        Register
+                    </button>
                 </div>
             </form>
-            <Link to="/login">Already have an account?</Link>
-
+            <Link to="/login" className="text-secondary"> Already have an account?</Link>
+            <div>
+                <h6 className="mt-5 mb-2 ">Subscription</h6>
+                <input
+                    type="radio"
+                    className="btn-check m-2"
+                    id="btncheck1"
+                    autocomplete="off"
+                    name="choose" />
+                <label
+                    className="btn btn-light m-2"
+                    for="btncheck1">
+                    Open one letter
+                </label>
+                <input
+                    type="radio"
+                    className="btn-check m-2"
+                    id="btncheck2"
+                    autocomplete="off"
+                    name="choose" />
+                <label
+                    className="btn btn-light m-2"
+                    for="btncheck2">
+                    Open two letter
+                </label>
+            </div>
         </div>
     )
 }

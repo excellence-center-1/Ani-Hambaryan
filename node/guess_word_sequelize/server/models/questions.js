@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
           },
-          level: {
+          level_id: {
             type: DataTypes.STRING,
             allowNull: false,
           },
@@ -28,7 +28,15 @@ module.exports = (sequelize) => {
         timestamps: false,
       }
     );
-  
+
+    Question.associate = (models) => {
+    
+      Question.belongsTo(models.Level, {
+        foreignKey: 'level_id',
+        onDelete: 'CASCADE',
+      });
+
+    };
     return Question;
   };
   
