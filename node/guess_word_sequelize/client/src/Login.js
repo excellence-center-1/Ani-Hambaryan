@@ -1,25 +1,18 @@
 import { useState, useEffect, useRef, } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link, useNavigate } from 'react-router-dom';
-import bcrypt from 'bcryptjs'
+
 
 
 export const Login = () => {
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
     const USER_REGEX = /^[A-Z][a-zA-Z0-9_-]{2,15}$/;
     const navigate = useNavigate();
-
     const errRef = useRef();
-
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
-
-
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-
-
-
 
     useEffect(() => {
         setErrMsg('');
@@ -34,6 +27,33 @@ export const Login = () => {
             setPwd(value)
         }
     }
+
+    const createUserLevel = async (userId, score) => {
+        try{
+const response = await fetch('http://localhost:4000/getLevel', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ score }),
+});
+if (response.ok) {
+    const {levelId} = await response.json();
+    await fetch('http://localhost:4000/score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, levelId, score }),
+    });
+} else {
+    console.log('Error retrieving level');
+}
+} catch (error) {
+console.error('Error creating user_level', error);
+}
+};
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const validUs = USER_REGEX.test(user);
@@ -42,7 +62,6 @@ export const Login = () => {
             setErrMsg('Invalid Name or password');
             return;
         }
-
         try {
             // const hash = bcrypt.hashSync(pwd, 10)
             const response = await fetch('http://localhost:4000/login', {
@@ -61,6 +80,8 @@ export const Login = () => {
                 setSuccess(true);
                 setErrMsg('Login Success');
                 console.log('User logged in:', { username: user });
+                // const { userId, score } = data; 
+                // createUserLevel(userId, score); 
                 setTimeout(() => {
                     navigate('/game');
                 }, 1000);

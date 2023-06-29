@@ -66,7 +66,7 @@ module.exports = {
       },
       {
           word: "package",
-          question: "a collection of code files or modules that can be reused in software development",
+          question: "a collection` of code files or modules that can be reused in software development",
           level: 'mid1'
       },
       {
