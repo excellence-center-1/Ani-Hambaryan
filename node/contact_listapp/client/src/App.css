@@ -1,0 +1,14 @@
+.App {
+    text-align: center;
+}
+
+.msg {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
