@@ -26,7 +26,7 @@ export const Profile = () => {
         <div className="container">
             {userReady ? (
                 <div>
-                <header className="jumbotron">
+                <header >
                    <h3>
               <strong>{currentUser.username}</strong> Profile
             </h3>

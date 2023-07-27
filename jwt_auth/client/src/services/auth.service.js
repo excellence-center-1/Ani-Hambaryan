@@ -27,14 +27,14 @@ const AuthService = {
         localStorage.removeItem("user");
     },
 
-    register: async (username, email, password) => {
+    register: async (username, email, password, role) => {
         try {
             const response = await fetch(API_URL + 'signup', {
                 method: 'POST',
-                headers: {  // <-- Corrected "Headers" to "headers"
+                headers: { 
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password })
+                body: JSON.stringify({ username, email, password,role })
             });
             return await response.json();
         } catch (error) {

@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+//client/Component/board-adminBoard.js
+import React, {useState, useEffect, Component} from "react";
 import UserService from "../services/user.service";
 
 export const BoardAdmin = () => {

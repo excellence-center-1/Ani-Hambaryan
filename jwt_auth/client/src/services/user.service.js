@@ -11,17 +11,17 @@ const UserService = {
     },
 
     getUserBoard: async() =>  {
-        const response = await fetch(API_URL + 'user', {headers: authHeader() });
+        const response = await fetch(API_URL + 'user');
         return response.json();
     },
 
     getModeratorBoard: async() => {
-        const response = await fetch(API_URL + 'mod', {headers: authHeader() });
+        const response = await fetch(API_URL + 'mod');
         return response.json();
     },
 
     getAdminBoard: async() =>  {
-        const response = await fetch(API_URL + 'admin', {headers: authHeader() });
+        const response = await fetch(API_URL + 'admin');
         return response.json();
     }
 }

@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./models");
+const { authJwt } = require("./middleware");
 const Role = db.role;
 
 const app = express();
 const PORT = process.env.PORT || 8081;
 
-// Middleware to allow CORS for requests from http://localhost:3000
+
 app.use(cors({
   origin: 'http://localhost:3000'
 }));
@@ -14,10 +15,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Import the verifySignUp middleware
+
 const verifySignUp = require("./middleware/verifySignUp");
 
-// Import the auth controller
 const authController = require("./controllers/auth.controller");
 
 // Define the routes
@@ -32,15 +32,27 @@ app.post(
 
 app.post("/auth/signin", authController.signin);
 
-// Define other routes (if any)
-// ...
+app.get("/test/all", (req, res) => {
+    res.send({ message: "Public route: All users can access this." });
+  });
+  
+  app.get("/test/user", [verifySignUp.checkRolesExisted], (req, res) => {
+    res.send({ message: "User route: Only authenticated users can access this." });
+  });
+  
+  app.get("/test/mod", [verifySignUp.checkRolesExisted, authJwt.isModerator], (req, res) => {
+    res.send({ message: "Moderator route: Only moderators can access this." });
+  });
+  
+  app.get("/test/admin", [verifySignUp.checkRolesExisted, authJwt.isAdmin], (req, res) => {
+    res.json({ message: "Admin route: Only administrators can access this." });
+  });
 
-// Root route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to my application" });
 });
 
-// Synchronize the database and start the server
+
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
