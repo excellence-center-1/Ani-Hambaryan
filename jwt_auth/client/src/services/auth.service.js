@@ -1,11 +1,12 @@
-const API_URL = 'http://localhost:8080/api/auth/';
+//client/src/services/auth.service.js
+const API_URL = 'http://localhost:4000/auth/';
 
 const AuthService = {
     login: async (username, password) => {
         try {
             const response = await fetch(API_URL + 'signin', {
                 method: 'POST',
-                Headers: {
+                headers: {  // <-- Corrected "Headers" to "headers"
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username, password })
@@ -30,7 +31,7 @@ const AuthService = {
         try {
             const response = await fetch(API_URL + 'signup', {
                 method: 'POST',
-                headers: {
+                headers: {  // <-- Corrected "Headers" to "headers"
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username, email, password })

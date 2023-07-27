@@ -1,5 +1,6 @@
+//client/src/components/login.js
 import React, { useState } from "react";
-import AuthService from "../services/auth.service.fetch";
+import AuthService from "../services/auth.service";
 import {  useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -50,6 +51,7 @@ export const Login = () => {
         />
 
         <form onSubmit={handleLogin}>
+            
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input

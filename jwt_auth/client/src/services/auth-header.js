@@ -1,3 +1,5 @@
+
+//client/src/services/auth-header.js
 export const authHeader = () => {
     const user = JSON.parse(localStorage.getItem('user'));
 
