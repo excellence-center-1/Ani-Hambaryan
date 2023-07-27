@@ -1,32 +1,48 @@
-//server/server.js
 const express = require("express");
 const cors = require("cors");
 const db = require("./models");
 const Role = db.role;
 
 const app = express();
-const authRoutes = require('./routes/auth.routes');
-const userRoutes = require('./routes/user.routes');
+const PORT = process.env.PORT || 8081;
 
-// Define the routes
-app.use('/auth', authRoutes);
-app.use('/test', userRoutes);
+// Middleware to allow CORS for requests from http://localhost:3000
 app.use(cors({
-    origin: 'http://localhost:3000'
+  origin: 'http://localhost:3000'
 }));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.urlencoded({extended: true}));
+// Import the verifySignUp middleware
+const verifySignUp = require("./middleware/verifySignUp");
 
+// Import the auth controller
+const authController = require("./controllers/auth.controller");
+
+// Define the routes
+app.post(
+  "/auth/signup",
+  [
+    verifySignUp.checkDuplicateUsernameOrEmail,
+    verifySignUp.checkRolesExisted
+  ],
+  authController.signup
+);
+
+app.post("/auth/signin", authController.signin);
+
+// Define other routes (if any)
+// ...
+
+// Root route
 app.get("/", (req, res) => {
-    res.json({message: "Welcome to my applocation"});
+  res.json({ message: "Welcome to my application" });
 });
 
-const PORT = process.env.PORT || 8081;
-db.sequelize.sync();
-
-app.listen(PORT, () => {
-console.log(`Server is running on port ${PORT}.`);
+// Synchronize the database and start the server
+db.sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+  });
 });
-

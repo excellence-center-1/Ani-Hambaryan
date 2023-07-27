@@ -6,7 +6,7 @@ const AuthService = {
         try {
             const response = await fetch(API_URL + 'signin', {
                 method: 'POST',
-                headers: {  // <-- Corrected "Headers" to "headers"
+                headers: { 
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username, password })

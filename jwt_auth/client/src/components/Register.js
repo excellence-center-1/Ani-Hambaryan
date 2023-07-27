@@ -17,7 +17,7 @@ export const Register = () => {
     AuthService.register(username, email, password)
       .then(
         (response) => {
-          setMessage(response.data.message);
+          setMessage(response.data);
           setSuccessful(true);
         },
         (error) => {
