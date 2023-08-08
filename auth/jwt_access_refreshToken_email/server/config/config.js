@@ -1,18 +1,15 @@
 //config/config.js
-const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        host: process.env.DB_HOST,
-        dialect: 'postgres',
-    }
-);
-
 module.exports = {
-    sequelize,
-    Sequelize,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  dialect: 'postgres',
+  timezone: 'Etc/GMT-4',
+  minifyAliases: true,
+  seederStorage: 'sequelize',
+  logging: false,
 };
+

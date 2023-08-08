@@ -1,26 +1,27 @@
 //models/user-model.js
-module.exports = (sequelize, Sequelize) => {
+const { DataTypes } = require('sequelize');
+module.exports = (sequelize) => {
     const UserModel = sequelize.define(
       'users',
       {
         id: { 
-          type: Sequelize.INTEGER, 
+          type: DataTypes.INTEGER, 
           primaryKey: true, 
           autoIncrement: true 
         },
         email: { 
-          type: Sequelize.STRING, 
+          type: DataTypes.STRING, 
           unique: true 
         },
         password: { 
-          type: Sequelize.STRING 
+          type: DataTypes.STRING 
         },
         isActivated: { 
-          type: Sequelize.BOOLEAN, 
+          type: DataTypes.BOOLEAN, 
           defaultValue: false 
         },
         activationLink: { 
-          type: Sequelize.STRING 
+          type: DataTypes.STRING 
         },
       },
       {

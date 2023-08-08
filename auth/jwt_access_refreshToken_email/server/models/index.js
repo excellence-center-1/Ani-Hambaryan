@@ -1,6 +1,7 @@
 //models/index.js
 const { Sequelize } = require('sequelize');
-const { sequelize } = require('../config/config.js'); // Import the sequelize instance
+const config = require('../config/config.js');
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 const UserModel = require('./user-model.js')(sequelize, Sequelize);
 const TokenSchema = require('./token-model.js')(sequelize, Sequelize);

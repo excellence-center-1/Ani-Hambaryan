@@ -1,20 +1,20 @@
 // models/token-models.js
-
-module.exports = (sequelize, Sequelize) => {
+const { DataTypes } = require('sequelize');
+module.exports = (sequelize) => {
     const TokenSchema = sequelize.define(
         'token_schema', 
         {
         id: { 
-            type: Sequelize.INTEGER, 
+            type: DataTypes.INTEGER, 
             primaryKey: true, 
             autoIncrement: true 
         },
         userId: { 
-            type: Sequelize.INTEGER, 
+            type: DataTypes.INTEGER, 
             allowNull: false 
         },
         refreshToken: { 
-            type: Sequelize.STRING }, 
+            type: DataTypes.STRING }, 
     }, {
         tableName: 'token_schema',
         timestamps: false,
