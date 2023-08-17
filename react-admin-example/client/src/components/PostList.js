@@ -6,7 +6,8 @@ import {
     TextField,
     DateField,
     EditButton,
-    DeleteButton
+    DeleteButton,
+    ReferenceField
 } from 'react-admin';
 const PostList = (props) => {
     return <List {...props} >
@@ -14,6 +15,7 @@ const PostList = (props) => {
             <TextField source='id' />
             <TextField source='title' />
             <DateField source='publishedAt' />
+            <ReferenceField source="userId" label="Author" reference="users" />
             <EditButton basePath='/posts' />
             <DeleteButton basePath='/posts' />
         </Datagrid>
