@@ -1,0 +1,21 @@
+
+
+{
+    "name": "ra-example-oidc-api",
+    "env": {
+        "OIDC_CLIENT_ID": "654868766388-1qh8be2i7p0ueq0a46di5bbi1esj23hc.apps.googleusercontent.com",
+        "OIDC_CLIENT_SECRET": "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",
+        "OIDC_REDIRECT_URI": "http://localhost:5173"
+    },
+    "routes": [
+        {
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type"
+            },
+            "src": "/code-to-token",
+            "dest": "api/code-to-token.js"
+        }
+    ]
+}
