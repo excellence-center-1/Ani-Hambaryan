@@ -18,3 +18,50 @@ import { LogoutButton } from './LogoutButton';
 
 //     );
 // }
+
+// In PlanningScheduleList.js
+import React from 'react';
+import {
+    List,
+    Datagrid,
+    TextField,
+    DateField,
+    EditButton,
+    DateInput,
+    NumberInput,
+} from 'react-admin';
+
+export const PlanningScheduleList = (props) => (
+    <List {...props}>
+        <Datagrid>
+            <TextField source="deviceName" label="Device Name" />
+            <TextField source="owner" />
+            <TextField source="deviceStatus" label="Device Status" />
+            <DateField source="dateOfUse" label="Date of Use" />
+            <DateInput source="planningStartDate" label="Planning Start Date" />
+            <DateInput source="planningEndDate" label="Planning End Date" />
+            <NumberInput source="usageStartTime" label="Usage Start Time" />
+            <NumberInput source="usageEndTime" label="Usage End Time" />
+            {/* Add other columns here */}
+            <EditButton />
+        </Datagrid>
+    </List>
+);
+
+CREATE TABLE SensorTypes (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    measurementUnit VARCHAR(50),
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Sensors (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    sensorTypeId INT, -- Reference to SensorTypes table
+    location VARCHAR(100),
+    installationDate DATE,
+    -- Other sensor-specific attributes
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

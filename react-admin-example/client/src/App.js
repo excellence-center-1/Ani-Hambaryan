@@ -22,7 +22,7 @@ const googleClientId="654868766388-l165egll3330ikvpf734diu2lf54uehc.apps.googleu
 function App() {
    
     return (
-        // <Admin layout={AppLayout} dataProvider={DATAPROVIDER} authProvider={myGoogleAuthProvider} loginPage={GoogleButton}>
+        // <Admin layout={AppLayout}  loginPage={GoogleButton}>
         <Admin layout={AppLayout} dataProvider={DATAPROVIDER} >
             <Resource name="posts" list={PostList} create={PostCreate} edit={PostEdit} icon={ArticleIcon} />
             <Resource name='users' list={UserList} create={UserCreate} edit={UserEdit} icon={PeopleIcon} />
