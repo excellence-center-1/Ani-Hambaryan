@@ -1,27 +1,14 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import React from 'react';
+import Table from '../components/Table'; // Import the Table component
+// ... other imports
 
-
-const withStyledHeader = (column: GridColDef) => ({
-  ...column,
-  headerName: (
-    <Box sx={{ color: '#A5AEE5', fontWeight: 'bold', fontSize: '16px', textAlign: 'center' }}>
-      {column.headerName}
-    </Box>
-  ),
-});
-
-const columns: GridColDef[] = [
-  withStyledHeader({ field: 'id', headerName: 'ID', width: 90 }),
-  withStyledHeader({ field: 'userName', headerName: 'User Name', width: 200, editable: true }),
-  withStyledHeader({ field: 'role', headerName: 'Role', width: 200, editable: true }),
-  withStyledHeader({ field: 'phoneNumber', headerName: 'Phone Number', type: 'number', width: 200, editable: true }),
-  withStyledHeader({ field: 'email', headerName: 'Email', type: 'email', width: 200, editable: true }),
+const columns = [
+  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'userName', headerName: 'User Name', width: 200, editable: true },
+  { field: 'role', headerName: 'Role', width: 200, editable: true },
+  { field: 'phoneNumber', headerName: 'Phone Number', type: 'number', width: 200, editable: true },
+  { field: 'email', headerName: 'Email', type: 'email', width: 200, editable: true },
 ];
-    // valueGetter: (params: GridValueGetterParams) =>
-    //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-
 
 const rows = [
   { id: 1, userName: 'Snow', role: 'Jon', PhoneNumber: 35, email: '' },
@@ -36,23 +23,5 @@ const rows = [
 ];
 
 export const UserInfo = () => {
-
-  return (
-    <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[10]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
-  );
-}
+  return <Table columns={columns} rows={rows} />;
+};
