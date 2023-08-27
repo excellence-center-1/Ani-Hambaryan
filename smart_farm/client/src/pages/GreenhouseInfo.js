@@ -22,7 +22,7 @@ const rows = [
   { id: 9, userName: 'Roxie', role: 'Harvey', phoneNumber: 65, email: ''},
 ];
 
-export const UserInfo = () => {
+export const GreenhouseInfo = () => {
   
   return <Table columns={columns} rows={rows} />;
   

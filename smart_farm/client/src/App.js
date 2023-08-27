@@ -10,6 +10,8 @@ import {Signin} from './pages/Signin';
 import {Signup} from './pages/Signup'
 import { Profile } from './pages/Profile';
 import { UserInfo } from './pages/UserInfo';
+import { FildInfo } from './pages/FildInfo';
+import { GreenhouseInfo } from './pages/GreenhouseInfo';
 
 const DATAPROVIDER = restProvider('http://localhost:3000');
 
@@ -23,6 +25,8 @@ const  App = ()  => {
        <Resource name='Signup' list={Signup} />
        <Resource name='Profile' list={Profile} />
        <Resource name='UserInfo' list={UserInfo} />
+       <Resource name='FildInfo' list={FildInfo} />
+       <Resource name='GreenhouseInfo' list={GreenhouseInfo} />
         </Admin>
       );
 }

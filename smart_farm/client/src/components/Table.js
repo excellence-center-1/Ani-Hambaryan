@@ -5,7 +5,14 @@ import { DataGrid } from '@mui/x-data-grid';
 const withStyledHeader = (column) => ({
   ...column,
   headerName: (
-    <Box sx={{ color: '#A5AEE5', fontWeight: 'bold', fontSize: '16px', textAlign: 'center' }}>
+    <Box
+      sx={{
+        color: '#A5AEE5',
+        fontWeight: 'bold',
+        fontSize: '16px',
+        textAlign: 'center', // Center align the header text
+      }}
+    >
       {column.headerName}
     </Box>
   ),
