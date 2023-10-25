@@ -15,8 +15,8 @@ List the technologies and libraries used in my project:
 
 *Clone the repository:*
 
-   ```bash
-   git clone https://github.com/your-username/your-project.git
+
+   [git clone https://github.com/your-username/your-project.git](https://github.com/excellence-center-1/Ani-Hambaryan.git)
 
 **Client installation**
 *To install and run the client in development mode:*
@@ -39,7 +39,7 @@ npx sequelize db:migrate
 
 
 **PostgreSQL Database Setup**
-*Follow these steps to set up your PostgreSQL database:*
+*Follow these steps to set up PostgreSQL database:*
 
 Log in to your PostgreSQL server.
 Create a new user 
