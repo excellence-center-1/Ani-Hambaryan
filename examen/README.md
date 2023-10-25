@@ -14,9 +14,7 @@ List the technologies and libraries used in my project:
 ### Installation
 
 *Clone the repository:*
-
-
-   [git clone https://github.com/your-username/your-project.git](https://github.com/excellence-center-1/Ani-Hambaryan.git)
+https://github.com/excellence-center-1/Ani-Hambaryan.git
 
 **Client installation**
 *To install and run the client in development mode:*
