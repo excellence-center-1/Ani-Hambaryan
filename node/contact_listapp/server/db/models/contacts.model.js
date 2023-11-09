@@ -1,15 +1,17 @@
+//contacts.model.js
 
+const db=require('../db')
+const { DataTypes} = require('sequelize');
+const User = require('./users.model');
 
-const { DataTypes } = require('sequelize');
-
-module.exports = (sequelize) => {
-    const Contacts = sequelize.define(
-        'Contacts',
+    const Contacts = db.define(
+        'contacts',
         {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
+                allowNull: false
             },
             firstname: {
                 type: DataTypes.STRING,
@@ -35,14 +37,23 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
+            // user_id: {
+            //   type: DataTypes.INTEGER,
+            //   allowNull: false,
+            // }
         },
         {
-            tableName: 'contacts',
             timestamps: false,
         }
     );
 
-   
+    // Contacts.associate = (models) => {
+    
+    //   Contacts.belongsTo(models.User, {
+    //     foreignKey: 'user_id',
+    //     onDelete: 'CASCADE',
+    //   });
 
-    return Contacts;
-};
+    // };
+   
+    module.exports=Contacts

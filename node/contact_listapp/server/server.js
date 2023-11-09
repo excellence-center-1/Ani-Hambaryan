@@ -6,11 +6,11 @@ const bcrypt = require('bcryptjs')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require("express-session"); // Add express-session
-const Sequelize = require('sequelize');
+const sequelize = require('./db/db')
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const port = 4000;
-const { User, Contacts } = require('./models');
+const { User, Contacts } = require('./db/models');
 
 
 app.use(session({
@@ -172,6 +172,17 @@ app.put('/contacts/:id', async (req, res) => {
     }
 });
 const PORT = process.env.PORT || 8000;
-app.listen(port, () => {
-    console.log(`App running on port ${PORT}.`);
-});
+
+const start = async () => {
+    try {
+        await sequelize.sync()
+        console.log("the table created")
+        app.listen(port, () => {
+            console.log(`App running on port ${port}.`);
+        });
+    } catch (err) {
+        console.log(err)
+    }
+}
+start()
+

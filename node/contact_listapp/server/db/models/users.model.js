@@ -1,8 +1,10 @@
-const { DataTypes } = require('sequelize');
+//users.model.js
+const db=require('../db')
+const { DataTypes} = require('sequelize');
+const Contacts = require('./contacts.model');
 
-module.exports = (sequelize) => {
-    const User = sequelize.define(
-        'User',
+    const User = db.define(
+        'users',
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -19,13 +21,21 @@ module.exports = (sequelize) => {
             },
         },
         {
-            tableName: 'users',
             timestamps: false,
         }
     );
+    // User.associate = (models) => {
+    
+    //   User.hasMany(models.Contacts, {
+    //     foreignKey: 'user_id',
+    //     onDelete: 'CASCADE',
+    //   });
 
-    return User;
-};
+    // };
+
+
+
+    module.exports=User
 
 
   
