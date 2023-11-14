@@ -104,3 +104,16 @@ The server/src folder contains the backend code for the application.
     ├── users.controller.ts
     ├── users.module.ts
     └── users.service.ts
+
+
+
+
+# Tag the server image
+docker tag server:latest aniec1/server:latest
+
+# Tag the client image
+docker tag client:latest aniec1/client:latest
+
+# Push the tagged images to Docker Hub
+docker push aniec1/server:latest
+docker push aniec1/client:latest
