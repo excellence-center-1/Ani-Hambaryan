@@ -6,10 +6,12 @@ WORKDIR /app
 COPY package.json ./ 
 COPY package-lock.json ./ 
 
-RUN npm install
+RUN npm i
 
 COPY . .
-COPY .env .
+# COPY .env .
+
+# copy /app/ ./app
 
 EXPOSE 3000
 

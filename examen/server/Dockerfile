@@ -8,8 +8,8 @@ COPY package-lock.json ./
 RUN npm install
 
 COPY . .
-COPY .env .
-COPY config/config.js .
+# COPY .env .
+# COPY config/config.js .
 
 
 

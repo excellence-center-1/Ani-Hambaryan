@@ -24,7 +24,8 @@ export class AuthController {
       const response = await this.authService.registration(userData, res);
       return res.status(201).json(response); 
     } catch (error) {
-      return res.status(500).json({ message: 'error' });
+      console.log(error)
+      return res.status(500).json({ message: 'error_registration' });
     }
   }
 
