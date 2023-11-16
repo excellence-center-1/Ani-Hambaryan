@@ -117,3 +117,31 @@ docker tag client:latest aniec1/client:latest
 # Push the tagged images to Docker Hub
 docker push aniec1/server:latest
 docker push aniec1/client:latest
+
+psql -h localhost -p 5433 -U examen1 -d examen_db1
+
+# Tag for server image
+docker tag server:latest <username>/server:latest
+
+# Tag for client image
+docker tag client:latest <username>/client:latest
+
+# Tag for postgres image
+docker tag postgres:latest <username>/postgres:latest
+
+# Tag for node image
+docker tag node:18 <username>/node:18
+
+
+# Push server image
+docker push <username>/server:latest
+
+# Push client image
+docker push <username>/client:latest
+
+# Push postgres image
+docker push <username>/postgres:latest
+
+# Push node image
+docker push <username>/node:18
+

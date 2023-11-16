@@ -4,6 +4,7 @@ import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import { config } from 'dotenv';
 
+
 config();
 
 async function start() {
@@ -16,6 +17,7 @@ async function start() {
   app.use(cors(corsOptions));
   app.use(cookieParser());
 
+  
   await app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });

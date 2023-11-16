@@ -27,6 +27,7 @@ config();
         User,
         Contact
       ],
+      autoLoadModels: true
     }),
     AuthModule,
     UsersModule,
