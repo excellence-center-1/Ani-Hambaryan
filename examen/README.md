@@ -145,3 +145,7 @@ docker push <username>/postgres:latest
 # Push node image
 docker push <username>/node:18
 
+docker pull <your_username>/<image_name>:<tag>
+docker run -it --rm <your_username>/<your_image_name>:latest bash
+
+

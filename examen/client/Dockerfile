@@ -9,7 +9,7 @@ COPY package-lock.json ./
 RUN npm i
 
 COPY . .
-# COPY .env .
+
 
 # copy /app/ ./app
 
