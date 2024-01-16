@@ -4,15 +4,13 @@ import pytest
 import yaml
 from test_auth import get_headers
 from urllib.parse import quote
-from token_reader import get_token_from_file
+from conftest import config
 
-@pytest.fixture
-def get_invalid_token():
-  return get_token_from_file('invalid_jwt_token.txt')
+
+
 
 class Test_Contacts:
-  contacts_api_endpoint  = '{config["api_endpoint"]}/contacts'
-
+  contacts_api_endpoint = f'{config.get("api_endpoint")}/contacts'
   # @pytest.mark.create
   def test_post_valid_contact(self, get_headers):
       headers = get_headers 
@@ -50,7 +48,7 @@ class Test_Contacts:
       assert create_contact_response.headers.get("Content-Type") == "application/json; charset=utf-8", "Unexpected Content-Type: " + create_contact_response.headers.get("Content-Type") 
          
 
-  # @pytest.mark.create
+  @pytest.mark.create
   def test_post_contact_with_invalid_token(self, get_invalid_token):
       headers = {
         'Authorization': f'Bearer {get_invalid_token}',
@@ -132,7 +130,7 @@ class Test_Users:
     assert get_users_response.headers.get("Content-Type") == "application/json; charset=utf-8", "Unexpected Content-Type: " + create_contact_response.headers.get("Content-Type")
 
 
-  @pytest.mark.create
+
   def test_handle_exception(self):
     try:
       response = requests.get(self.users_api_endpoint + "info?page=2")

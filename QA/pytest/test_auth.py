@@ -4,11 +4,14 @@ import requests
 import pytest
 import yaml
 from faker import Faker
+from conftest import config
 
-auth_api_endpoint = f'{config["api_endpoint"]}/auth'
 jwt_token = None
 fake = Faker()
 
+
+
+auth_api_endpoint=f'{config.get("api_endpoint")}/auth'
 
 @pytest.mark.auth
 @pytest.mark.register
