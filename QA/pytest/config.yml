@@ -1,2 +1,7 @@
 # config.yml
 api_endpoint: http://localhost:5000
+# host: localhos
+# port: 5432
+# user: examen1
+# password: 123
+# database: examen_db1
