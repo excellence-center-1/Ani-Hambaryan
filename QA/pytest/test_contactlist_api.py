@@ -3,14 +3,13 @@ import requests
 import pytest
 from utils import get_api_endpoint
 from urllib.parse import quote
+import allure
 
 
 
-
-
+@allure.suite("Tests for Contacts")
 class Test_Contacts:
   contacts_api_endpoint = f'{get_api_endpoint()}/contacts'
-
   @pytest.mark.parametrize("contact_data", [
     {
       'contact': 'testContact1',
@@ -25,7 +24,7 @@ class Test_Contacts:
       'group': 'Personal'
     }
     ])
-
+  @allure.title("Test Create valid contact (Contact: {contact_data})") 
   def test_post_valid_contact(self, logging, database_connection, contact_data):
       headers = logging 
       create_contact_response = requests.post(f'{self.contacts_api_endpoint}/create', json=contact_data, headers=headers)
@@ -37,22 +36,26 @@ class Test_Contacts:
       print("Data retrieved from the database:", data)
 
       data = create_contact_response.json()
+      allureLogs("This is a post Method for valid contact")
       assert create_contact_response.status_code == 201, f"the status code must be 201 but it is {create_contact_response.status_code }"
       assert "contact" in data, "Expected 'contact' key not found in the JSON response"
       assert "email" in data, "Expected 'email' key not found in the JSON response"
       assert "group" in data, "Expected 'group' key not found in the JSON response"
       assert isinstance(data["email"], str), "'email' value is not an string"
       assert create_contact_response.headers.get("Content-Type") == "application/json; charset=utf-8", "Unexpected Content-Type: " + create_contact_response.headers.get("Content-Type")
-
+      
 
   @pytest.mark.invalid_data
-  def test_post_invalid_contact(self, logging):
+  @pytest.mark.parametrize("contact_data", [
+    {
+        'contact': 'testContact',
+        'email': 'testcontact@mail.ru',
+        'group': 'Work'
+    }
+    ])
+  @allure.title("Test Create invalid contact (Contact: {contact_data})") 
+  def test_post_invalid_contact(self, logging, contact_data):
       headers = logging 
-      contact_data = {
-          'contact': 'testContact',
-          'email': 'testcontact@mail.ru',
-          'group': 'Work'
-      }
       create_contact_response = requests.post(f'{self.contacts_api_endpoint}/create', json=contact_data, headers=headers)
       data = create_contact_response.json()
       assert create_contact_response.status_code == 500, f"the status code must be 500 but it is {create_contact_response.status_code }"
@@ -64,6 +67,7 @@ class Test_Contacts:
          
 
   @pytest.mark.invalid_data
+  @allure.title("Test Create contact with invalid token") 
   def test_post_contact_with_invalid_token(self, get_invalid_token):
       headers = {
         'Authorization': f'Bearer {get_invalid_token}',
@@ -82,7 +86,8 @@ class Test_Contacts:
       assert data.get('message') == 'Unauthorized user', f"The response status message must be 'Unauthorized user' but it is {data.get('message')}"
 
 
-  
+  @allure.title("Test Get contacts") 
+  @allure.link("https://ecteam2022.atlassian.net/browse/EC-3", name="Website")
   def test_get_contacts(self, logging):
     headers = logging
     get_contacts_response = requests.get(f'{self.contacts_api_endpoint}', headers=headers)
@@ -97,11 +102,12 @@ class Test_Contacts:
         assert isinstance(contact["phone_number"], str), "'phone_number' value is not a string"
 
   @pytest.mark.invalid_data
+  @allure.title("Test Invalid url") 
   def test_invalid_url_statuscode(self):
     invalid_response = requests.get(self.contacts_api_endpoint + "1/non") 
     assert invalid_response.status_code == 404, "Expected a 404 status code, but got: " + str(invalid_response.status_code)
 
-  
+  @allure.title("Test delete valid contact") 
   def test_delete_valid_contact(self, logging):
       headers = logging 
       phone_number_to_delete = '+374 95 111114'
@@ -112,6 +118,10 @@ class Test_Contacts:
 
   @pytest.mark.xfail(reason="Nown issue: 01")
   @pytest.mark.invalid_data
+  @allure.title("Test delete invalid contact") 
+  @allure.issue("I-1")
+  @allure.testcase("C-7")
+  @allure.severity(allure.severity_level.CRITICAL)
   def test_delete_invalid_contact(self, logging):
       headers = logging 
       phone_number_to_delete = '+374'
@@ -120,10 +130,11 @@ class Test_Contacts:
       assert delete_contact_response.status_code == 404, f"the status code must be 404 but it is {delete_contact_response.status_code }"
 
 
-
+@allure.sub_suite("Tests for Users")
 class Test_Users:
   users_api_endpoint  = f'{get_api_endpoint()}/users'
-  
+
+  @allure.title("Test Get users") 
   def test_get_users(self, logging):
     headers = logging
     get_users_response = requests.get(f'{self.users_api_endpoint}', headers=headers)
@@ -141,12 +152,7 @@ class Test_Users:
 
 
 
-  def test_handle_exception(self):
-    try:
-      response = requests.get(self.users_api_endpoint + "info?page=2")
-      response.raise_for_status()
-      print("Request successful")
-    except requests.exceptions.RequestException as e:
-      print("Request failed:", str(e))
 
-
+def allureLogs(text):
+    with allure.step(text):
+        pass

@@ -2,13 +2,14 @@
 import pytest
 import requests
 import psycopg2
+import allure
 from utils import get_token_from_file, get_api_endpoint
 from psycopg2 import sql
 
 
 auth_api_endpoint = f"{get_api_endpoint()}/auth"
 
-
+@allure.title("Prepare for the logging and logout")
 @pytest.fixture(scope="session")
 def logging():
   login_data = {
@@ -35,6 +36,7 @@ def logging():
     print("---------------------------logout successful")
 
 
+@allure.title("Prepare for the connection to the db")
 @pytest.fixture(scope = "session")
 def database_connection():
   connection = psycopg2.connect(

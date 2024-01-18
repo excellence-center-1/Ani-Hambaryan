@@ -1,0 +1,1 @@
+Data retrieved from the database: (10, 'testContact1', '+374 95 111111', 'testcontact1@mail.ru', 'Work', 5)
